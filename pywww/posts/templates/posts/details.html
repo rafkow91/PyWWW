@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Szczegóły postu nr {{post.id}}</title>
+</head>
+<body>
+    <h2>
+        Post nr {{post.id}}
+    </h2>
+    <main>
+        <h3>Szczegóły:</h3>
+        <ul>
+            <li>Tytuł: {{post.title}}</li>
+            <li>Opis: {{post.content}}</li>
+            <li>Opublikowany:
+            {%if post.published %}
+                tak
+            {% else %}
+                nie
+            {% endif %}
+            </li>
+            <li>Utworzony: {{post.created}}</li>
+            <li>Zmodyfikowany: {{post.modified}}</li>
+        </ul>
+    </main>
+    <footer>
+        <p>To jest stopka :)</p>
+    </footer>
+</body>
+</html>
