@@ -1,6 +1,8 @@
 # folders
-*/__pycache/
-/.idea
-/pywwwenv
+/*/__pycache__/
+/.idea/
+/pywwwenv/
 
 # files
+/test1.json
+/only_console_print.py
