@@ -1,0 +1,86 @@
+[
+{
+  "model": "posts.post",
+  "pk": 1,
+  "fields": {
+    "title": "Post 1",
+    "content": "treœæ 1 - zmodyfikowana",
+    "published": true,
+    "created": "2021-11-07T18:12:34.208Z",
+    "modified": "2021-11-07T18:12:58.024Z",
+    "sponsored": false
+  }
+},
+{
+  "model": "posts.post",
+  "pk": 2,
+  "fields": {
+    "title": "post nr 1",
+    "content": "text",
+    "published": false,
+    "created": "2021-11-10T19:41:39.290Z",
+    "modified": "2021-11-10T19:41:39.290Z",
+    "sponsored": false
+  }
+},
+{
+  "model": "posts.post",
+  "pk": 3,
+  "fields": {
+    "title": "post nr 2",
+    "content": "test",
+    "published": true,
+    "created": "2021-11-10T19:41:48.592Z",
+    "modified": "2021-11-10T19:41:48.592Z",
+    "sponsored": false
+  }
+},
+{
+  "model": "posts.post",
+  "pk": 4,
+  "fields": {
+    "title": "inny post",
+    "content": "post",
+    "published": false,
+    "created": "2021-11-10T19:41:59.515Z",
+    "modified": "2021-11-10T19:41:59.515Z",
+    "sponsored": false
+  }
+},
+{
+  "model": "posts.post",
+  "pk": 5,
+  "fields": {
+    "title": "opublikowany post",
+    "content": "post po publikacji",
+    "published": true,
+    "created": "2021-11-10T19:42:18.888Z",
+    "modified": "2021-11-10T19:42:18.888Z",
+    "sponsored": false
+  }
+},
+{
+  "model": "posts.post",
+  "pk": 6,
+  "fields": {
+    "title": "test ipython",
+    "content": "wpisany z konsoli",
+    "published": false,
+    "created": "2021-11-10T20:01:36.820Z",
+    "modified": "2021-11-10T20:01:36.820Z",
+    "sponsored": false
+  }
+},
+{
+  "model": "posts.post",
+  "pk": 7,
+  "fields": {
+    "title": "post testowy",
+    "content": "test sponsorowany",
+    "published": false,
+    "created": "2021-11-14T15:00:00.503Z",
+    "modified": "2021-11-14T15:00:24.309Z",
+    "sponsored": true
+  }
+}
+]

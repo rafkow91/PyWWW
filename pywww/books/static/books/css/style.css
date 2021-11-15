@@ -1,0 +1,45 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    max-width: 1024px;
+    margin: 0 auto;
+    background-color: white;
+    color: black;
+}
+
+div {
+    background-color: lightgray;
+    padding: 5px;
+}
+header {
+    padding: 25px;
+    margin: 15px auto;
+    text-align: center;
+}
+header a {
+    text-decoration: none;
+    color: black;
+}
+
+header a:hover {
+    background-color: darkgrey;
+    color: lightgray;
+}
+
+nav {
+    padding: 15px;
+    border: black solid 1px;
+}
+
+main {
+    min-height: 720px;
+}
+
+footer {
+    padding: 5px;
+    border-top: black solid 2px;
+    text-align: center;
+}

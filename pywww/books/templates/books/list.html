@@ -1,0 +1,31 @@
+{% extends 'books/base.html' %}
+
+{% block title %} Lista książek {% endblock %}
+
+{% block main %}
+<h3>Lista książek</h3>
+<table>
+    <tr>
+        <td>ID</td>
+        <td>Tytuł</td>
+        <td>Autor</td>
+        <td>Miejsce i rok wydania</td>
+        <td>Dostępność</td>
+    </tr>
+    {% for book in books_list %}
+    <tr>
+        <td>{{book.id}}</td>
+        <td>{{book.title}}</td>
+        <td>{{book.author_first_name}} {{book.author_last_name}}</td>
+        <td>{{book.publication_city}} {{book.publication_year}}</td>
+        <td>
+            {% if book.available %}
+            na półce
+            {% else %}
+            wypożyczona
+            {% endif %}
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+{% endblock %}

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <link rel="stylesheet" type="text/css" href="{% static 'books/css/style.css' %}">
+    <meta charset="UTF-8">
+<!--    <link rel="stylesheet" href="style.css" type="text/css">-->
+    <title>
+        {% block title %}{% endblock %}
+    </title>
+</head>
+<body>
+<div>
+    <header>
+        <h1>Rafałowa biblioteczka</h1>
+        <h2>projekt tworzony w czasie <strong><a href="http://www.pywww.pl">PyWWW</a></strong></h2>
+    </header>
+    <nav>
+        <p>Tu będzie kiedyś nawigacja</p>
+    </nav>
+    <main>
+            {% block main %}{% endblock %}
+        </main>
+        <footer>
+            <small>rafkow91 &copy All rights reserved</small>
+        </footer>
+    </div>
+</body>
+</html>
