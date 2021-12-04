@@ -1,0 +1,36 @@
+{% extends 'main/base.html' %}
+{% load static %}
+
+{% block title %} Szczegóły książki {% endblock %}
+{% block main %}
+<h1>
+    <img alt="Logo kategorii" class="logo" src="{% static 'books/img/books_logo.png' %}">
+    Książki
+</h1>
+<h3>
+    {{ book.title }}
+</h3>
+<ul>
+    <li>Autorzy:
+        <p>
+            {% for author in authors %}
+            <a href="{% url 'authors:details' author.id %}">
+                <span class="fw-bold fst-italic">{{author.first_name}} {{author.last_name}}</span>
+            </a>
+            {% endfor %}
+        </p>
+    </li>
+    <li>Opis: <span class="fw-bold fst-italic">{{book.description}}</span></li>
+    <li>Rok wydania: <span class="fw-bold fst-italic">{{book.publication_year}}</span></li>
+    <li>Miejsce wydania: <span class="fw-bold fst-italic">{{book.publication_city}}</span></li>
+    <li>Dostępna:
+        <span class="fw-bold fst-italic">
+        {%if book.available %}
+        tak
+        {% else %}
+        nie
+        {% endif %}
+        </span>
+    </li>
+</ul>
+{% endblock %}

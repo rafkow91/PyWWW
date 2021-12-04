@@ -1,0 +1,14 @@
+{% extends 'main/base.html' %}
+
+{% block title %} Strona główna {% endblock %}
+
+{% block main %}
+<p>To jest strona główna</p>
+<ul>
+    <li><a href="{% url 'books:list' %}">Lista książek</a></li>
+    <li><a href="{% url 'posts:list' %}">Lista postów</a></li>
+    <li><a href="{% url 'main:about' %}">O mnie</a></li>
+</ul>
+
+
+{% endblock %}

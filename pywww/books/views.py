@@ -1,7 +1,6 @@
-# Standard libs
 from django.http import HttpResponse
 from django.shortcuts import render
-# Project's modules
+
 from books.models import Book
 
 
@@ -10,7 +9,12 @@ def start_view(request):
 
 
 def books_list(request):
-    books = Book.objects.all()
-    context = {'books_list': books}
+    context = {'books_list': Book.objects.all()}
 
     return render(request, 'books/list.html', context)
+
+
+def book_details(request, book_id):
+    context = {'book': Book.objects.get(id=book_id)}
+
+    return render(request, 'books/details.html', context)

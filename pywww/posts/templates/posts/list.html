@@ -1,20 +1,26 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Lista postów</title>
-</head>
-    <body>
-        <h1>Lista postów</h1>
-        <ul>
-        {% for post in posts_list %}
-            <li>
-                {{ post }}
-                {% if post.sponsored %}
-                     (sponsorowany)
-                {% endif %}
-            </li>
+{% extends 'main/base.html' %}
+{% load static %}
+
+{% block style %}
+<link href="{% static 'posts/css/style.css' %}" rel="stylesheet" type="text/css">
+{% endblock %}
+
+{% block title %} Lista postów {% endblock %}
+
+{% block main %}
+<h1>
+    <img alt="Logo kategorii" class="logo" src="{% static 'posts/img/posts_logo.png' %}">
+    Posty
+</h1>
+<ul class="list-group">
+    {% for post in posts_list %}
+    <li class="list-group-item">
+        <a href="{% url 'posts:details' post.id %}">
+            {{ post }}
+            {% if post.sponsored %}
+            (sponsorowany)
+            {% endif %}
+        </a>
         {% endfor %}
-        </ul>
-    </body>
-</html>
+</ul>
+{% endblock %}

@@ -1,10 +1,9 @@
 <!DOCTYPE html>
-{% load static %}
+<!--{% load static %}-->
 <html lang="en">
 <head>
-    <link rel="stylesheet" type="text/css" href="{% static 'books/css/style.css' %}">
+    <!--    <link rel="stylesheet" type="text/css" href="{% static 'main/css/style.css' %}">-->
     <meta charset="UTF-8">
-<!--    <link rel="stylesheet" href="style.css" type="text/css">-->
     <title>
         {% block title %}{% endblock %}
     </title>
@@ -19,11 +18,11 @@
         <p>Tu będzie kiedyś nawigacja</p>
     </nav>
     <main>
-            {% block main %}{% endblock %}
-        </main>
-        <footer>
-            <small>rafkow91 &copy All rights reserved</small>
-        </footer>
-    </div>
+        {% block main %}{% endblock %}
+    </main>
+    <footer>
+        <small>rafkow91 &copy All rights reserved</small>
+    </footer>
+</div>
 </body>
 </html>

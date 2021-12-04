@@ -4,7 +4,7 @@ from books.utils import create_books
 
 
 class Command(BaseCommand):
-    help = 'Creating fake books'
+    help = 'Creating fake main'
 
     def handle(self, *args, **options):
         numbers_of_books = options.get('number', 10)

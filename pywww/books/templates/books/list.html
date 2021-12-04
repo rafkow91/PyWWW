@@ -1,22 +1,27 @@
-{% extends 'books/base.html' %}
+{% extends 'main/base.html' %}
+{% load static %}
 
 {% block title %} Lista książek {% endblock %}
-
+<link href="{% static 'posts/css/style.css' %}" rel="stylesheet" type="text/css">
 {% block main %}
-<h3>Lista książek</h3>
-<table>
+<h1>
+    <img alt="Logo kategorii" class="logo" src="{% static 'books/img/books_logo.png' %}">
+    Książki
+</h1>
+<table class="table table-dark table-striped">
+    <thead>
     <tr>
-        <td>ID</td>
         <td>Tytuł</td>
-        <td>Autor</td>
+<!--        <td>Autor</td>-->
         <td>Miejsce i rok wydania</td>
         <td>Dostępność</td>
     </tr>
+    </thead>
+    <tbody>
     {% for book in books_list %}
     <tr>
-        <td>{{book.id}}</td>
-        <td>{{book.title}}</td>
-        <td>{{book.author_first_name}} {{book.author_last_name}}</td>
+        <td><a href="{% url 'books:details' book.id %}">{{book.title}}</a></td>
+<!--        <td>{{book.author_first_name}} {{book.author_last_name}}</td>-->
         <td>{{book.publication_city}} {{book.publication_year}}</td>
         <td>
             {% if book.available %}
@@ -27,5 +32,6 @@
         </td>
     </tr>
     {% endfor %}
+    </tbody>
 </table>
 {% endblock %}
