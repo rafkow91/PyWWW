@@ -14,6 +14,6 @@ class PostResource(resources.ModelResource):
 @admin.register(Post)
 class PostAdmin(ExportMixin, admin.ModelAdmin):
     list_display = ['id', 'title', 'created', 'modified', 'published', 'sponsored']
-    search_fields = ['title', 'description']
+    search_fields = ['title', 'content']
     list_filter = ['published', 'sponsored']
     resource_class = PostResource

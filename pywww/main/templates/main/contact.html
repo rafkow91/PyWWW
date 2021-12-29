@@ -1,0 +1,21 @@
+{% extends 'main/base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block style %}
+<link href="{% static 'posts/css/style.css' %}" rel="stylesheet" type="text/css" xmlns="http://www.w3.org/1999/html">
+{% endblock %}
+
+{% block title %}Kontakt{% endblock %}
+
+{% block main %}
+  <form class="center-form-400px-border1px" method="post">
+    {% csrf_token %}
+    {{ form|crispy }}
+    <div class="text-end">
+        <button type="submit" class="btn btn-outline-light me-2">
+          Wyślij
+        </button>
+    </div>
+  </form>
+{% endblock %}

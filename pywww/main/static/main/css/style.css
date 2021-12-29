@@ -36,23 +36,13 @@ header a {
     color: white;
 }
 
-/*header a {*/
-/*    text-decoration: none;*/
-/*    color: black;*/
-/*}*/
-
-/*header a:hover {*/
-/*    background-color: darkgrey;*/
-/*    color: lightgray;*/
-/*}*/
-
-/*!*nav {*!*/
-/*!*    padding: 15px;*!*/
-/*!*    border: black solid 1px;*!*/
-/*!*}*!*/
+header a:hover {
+    background-color: darkgrey;
+    color: lightgray;
+}
 
 main {
-    min-height: 720px;
+    min-height: 100px;
 }
 
 footer {
@@ -65,17 +55,25 @@ ul {
     margin-left: 30px;
 }
 
-a {
+main a {
     text-decoration: none;
     color: white;
 }
 
-a:hover {
+main a:hover {
     text-decoration: underline;
     color: white;
 }
 
-a:visited {
+main a:visited {
     text-decoration: none;
     color: white;
+}
+
+div.details_image {
+    margin: 10px auto;
+}
+
+.details_image {
+    width: 30vw;
 }

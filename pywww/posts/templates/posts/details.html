@@ -23,5 +23,10 @@
     </li>
     <li>Utworzony: {{post.created}}</li>
     <li>Zmodyfikowany: {{post.modified}}</li>
+    {% if post.image_file %}
+    <div class="details_image" >
+        <img class="details_image" src="{{ post.image_file.url }}" alt="Obrazek ilustrujący treść posta">
+    </div>
+    {% endif %}
 </ul>
 {% endblock %}

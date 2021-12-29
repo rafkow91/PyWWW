@@ -1,5 +1,7 @@
 # folders
-/*/__pycache__/
+__pycache__/
+pywww/*/__pycache__/
+pywww/*/*/__pycache__/
 /.idea/
 /pywwwenv/
 

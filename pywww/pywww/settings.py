@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     # installed apps
     'django_extensions',
     'import_export',
+    'crispy_forms',
 
     # my apps
     'authors.apps.AuthorsConfig',
@@ -134,3 +135,10 @@ STATICFILES_DIRS = [
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# Media
+MEDIA_ROOT = BASE_DIR / 'media'
+MEDIA_URL = '/media/'
+
+# Crispy forms
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
