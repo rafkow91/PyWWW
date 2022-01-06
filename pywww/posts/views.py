@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponseRedirect
 from django.urls import reverse
 
@@ -29,11 +29,29 @@ def post_details(request, post_id):
 
 def add_post_form(request):
     if request.method == 'POST' and request.user.is_authenticated:
-        form = PostForm(data=request.POST)
+        form = PostForm(request.POST, request.FILES)
         if form.is_valid():
-            form.cleaned_data['author'] = request.user
-            post = Post.objects.create(**form.cleaned_data)
-            return HttpResponseRedirect(reverse("posts:add"))
+            instance = form.save(commit=False)
+            instance.author = request.user
+            instance.save()
+            form.helper.form_action = 'posts:add'
+            return HttpResponseRedirect('/posts')
     else:
         form = PostForm()
+    return render(request, 'posts/add.html', {'form': form})
+
+def post_edit_details(request, post_id):
+    post = get_object_or_404(Post, pk=post_id)
+    if request.method == "POST":
+        form = PostForm(request.POST, request.FILES, instance=post)
+        if form.is_valid():
+            form.save()
+            form.helper.form_action = f'/books/{post_id}/edit'
+            return HttpResponseRedirect('/posts')
+    else:
+        form = PostForm(instance=post)
+        if not request.user.is_authenticated:
+            for field in form.fields:
+                form.fields[field].disabled = True
+            form.helper.inputs = []
     return render(request, 'posts/add.html', {'form': form})

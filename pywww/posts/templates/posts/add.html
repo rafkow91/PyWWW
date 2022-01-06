@@ -13,14 +13,7 @@
     <img alt="Logo kategorii" class="logo" src="{% static 'posts/img/posts_logo.png' %}">
     Nowy post
 </h1>
-<form class="center-form-400px-border1px" method="POST">
-    {% csrf_token %}
-    {{ form|crispy }}
-    <br>
-    <div class="text-end">
-        <button type="submit" class="btn btn-outline-light me-2">
-          Dodaj
-        </button>
-    </div>
-</form>
+<div class="center-form-400px-border1px">
+    {% crispy form %}
+</div>
 {% endblock %}

@@ -8,8 +8,8 @@ class Author(Timestamped):
     bio = models.TextField(blank=True)
     birth_year = models.IntegerField(blank=True)
     birth_city = models.CharField(max_length=255, blank=True)
-    death_year = models.IntegerField(blank=True)
-    death_city = models.CharField(max_length=255, blank=True)
+    death_year = models.IntegerField(blank=True, null=True)
+    death_city = models.CharField(max_length=255, blank=True, null=True)
 
     def __str__(self):
         return f'{self.first_name} {self.last_name}'
@@ -21,9 +21,10 @@ class Book(Timestamped):
     description = models.TextField(blank=True)
     available = models.BooleanField(default=True)
     publication_year = models.IntegerField(blank=True)
-    publication_city = models.CharField(max_length=255, blank=True)
+    publication_city = models.CharField(max_length=255, blank=True, null=True)
     language = models.CharField(max_length=255, blank=True)
     tags = models.ManyToManyField('tags.Tag', related_name='books', blank=True)
+    cover = models.ImageField(upload_to='books/covers/%Y/%m/%d/', blank=True, null=True)
 
     def __str__(self):
         return f'{self.title}'

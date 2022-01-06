@@ -1,0 +1,15 @@
+{% extends 'main/base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block style %}
+<link href="{% static 'books/css/style.css' %}" rel="stylesheet" type="text/css">
+{% endblock %}
+
+{% block title %} Dodawanie/edycja książki {% endblock %}
+
+{% block main %}
+<div class="center-form-800px-border1px">
+        {% crispy form %}
+</div>
+{% endblock %}

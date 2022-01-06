@@ -26,14 +26,17 @@ def contact(request):
     return render(request, 'main/contact.html', {'form': form})
 
 
-def userprofile(request, user_id):
+def user_profile(request, user_id):
     user = get_object_or_404(get_user_model(), id=user_id)
-    if request.method == 'POST':
+    if request.method == "POST":
         try:
             profile = user.userprofile
             form = UserProfileForm(request.POST, instance=profile)
         except AttributeError:
-            pass
+            form = UserProfileForm(initial={
+                'user': user,
+                'bio': ''
+            })
         if form.is_valid():
             form.save()
     else:

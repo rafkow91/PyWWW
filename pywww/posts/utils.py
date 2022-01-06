@@ -1,7 +1,7 @@
 from faker import Faker
 from random import randint
 
-from posts.models import Post
+from .models import Post
 
 
 def create_posts(n=10):
@@ -19,3 +19,5 @@ def create_posts(n=10):
         )
 
         post.save()
+
+

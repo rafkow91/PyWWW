@@ -13,9 +13,9 @@
 <ul>
     <li>Autorzy:
         <p>
-            {% for author in authors %}
+            {% for _ in author %}
             <a href="{% url 'authors:details' author.id %}">
-                <span class="fw-bold fst-italic">{{author.first_name}} {{author.last_name}}</span>
+                <span class="fw-bold fst-italic">{{ book.author }}</span>
             </a>
             {% endfor %}
         </p>
@@ -33,4 +33,7 @@
         </span>
     </li>
 </ul>
+{% if book.cover %}
+<img src="{{ book.cover.url }}" alt="Okładka książki">
+{% endif %}
 {% endblock %}

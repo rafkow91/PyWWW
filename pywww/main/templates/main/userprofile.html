@@ -1,8 +1,17 @@
 {% extends 'main/base.html' %}
+
 {% load crispy_forms_tags %}
+{% load static %}
+
+{% block style %}
+<link href="{% static 'posts/css/style.css' %}" rel="stylesheet" type="text/css" xmlns="http://www.w3.org/1999/html">
+{% endblock %}
 
 {% block title %}Profil użytkownika{% endblock %}
 
 {% block main %}
-{% crispy form %}
+<div class="center-form-400px-border1px">
+    {% crispy form %}
+</div>
+
 {% endblock %}
