@@ -4,6 +4,7 @@ pywww/*/__pycache__/
 pywww/*/*/__pycache__/
 /.idea/
 /pywwwenv/
+/pywww/media/cache/
 
 # files
 /test1.json
