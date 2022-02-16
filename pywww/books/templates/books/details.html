@@ -1,5 +1,6 @@
-{% extends 'main/base.html' %}
+{% extends 'base.html' %}
 {% load static %}
+{% load thumbnail %}
 
 {% block title %} Szczegóły książki {% endblock %}
 {% block main %}
@@ -34,6 +35,8 @@
     </li>
 </ul>
 {% if book.cover %}
-<img src="{{ book.cover.url }}" alt="Okładka książki">
+    {% thumbnail book.cover "x300" as im %}
+    <img src="{{ im.url }}" alt="Okładka książki">
+    {% endthumbnail %}
 {% endif %}
 {% endblock %}

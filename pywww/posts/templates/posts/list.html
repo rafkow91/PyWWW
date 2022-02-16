@@ -1,4 +1,4 @@
-{% extends 'main/base.html' %}
+{% extends 'base.html' %}
 {% load static %}
 
 {% block style %}
@@ -20,14 +20,15 @@
         <img alt="Logo kategorii" class="logo" src="{% static 'posts/img/posts_logo.png' %}">
         Posty
     </div>
-    <div class="text-end">
+    <div class="text-end" style="display: inline-block">
         <a class="btn btn-outline-light me-2" href="/posts/add">
             Dodaj nowy post
         </a>
     </div>
 </h1>
+
 <ul class="list-group">
-    {% for post in posts_list %}
+    {% for post in post_list %}
     <li class="list-group-item">
         <a href="{% url 'posts:details' post.id %}">
             {{ post }}
@@ -37,5 +38,19 @@
         </a>
         {% endfor %}
 </ul>
+<br>
+<div class="pagination" style="margin: 0 auto">
+    <span class="step-links">
+        {% if post_list.has_previous %}
+        <a class="btn btn-outline-light me-2" href="?page=1">&laquo; Pierwsza strona</a>
+        <a class="btn btn-outline-light me-2" href="?page={{ post_list.previous_page_number }}">Poprzednia</a>
+        {% endif %}
+
+        {% if post_list.has_next %}
+        <a class="btn btn-outline-light me-2" href="?page={{ post_list.next_page_number }}">Następna</a>
+        <a class="btn btn-outline-light me-2" href="?page={{ post_list.paginator.num_pages }}">Ostatnia strona &raquo;</a>
+        {% endif %}
+    </span>
+</div>
 <br>
 {% endblock %}

@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load thumbnail %}
+
+{% block title %} {{gallery.title}} {% endblock %}
+
+{% block style %}
+<link href="{% static 'galleries/css/style.css' %}" rel="stylesheet" type="text/css">
+{% endblock %}
+
+{% block main %}
+<h1>
+    {{gallery.title}}
+    {% if user.is_authenticated %}
+    <div class="text-end">
+        <a class="btn btn-outline-light me-2" href="{% url 'galleries:add_photo' gallery.slug %}">
+            Dodaj nowe zdjęcie
+        </a>
+    </div>
+    {% endif %}
+</h1>
+<h6 style="font-size: x-small">
+    Utworzona: <em>{{gallery.created}}</em><br>
+    Zmodyfikowana: <em>{{gallery.modified}}</em>
+</h6>
+<p class="text-decoration-underline">Zdjęcia:</p>
+<section class="photo_gallery">
+    {% for photo in photos %}
+    {% thumbnail photo.image "x300" as im %}
+    <a href="{{ photo.image.url }}">
+        <img src="{{ im.url }}" alt="" class="photo_padding">
+    </a>
+    {% endthumbnail %}
+    {% endfor %}
+</section>
+{% endblock %}

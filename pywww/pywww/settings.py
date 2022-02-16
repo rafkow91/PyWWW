@@ -28,6 +28,10 @@ ALLOWED_HOSTS = []
 
 # Application definition
 INSTALLED_APPS = [
+    # DAL
+    'dal',
+    'dal_select2',
+
     # django apps
     'django.contrib.admin',
     'django.contrib.auth',
@@ -40,13 +44,15 @@ INSTALLED_APPS = [
     'django_extensions',
     'import_export',
     'crispy_forms',
+    'sorl.thumbnail',
 
     # my apps
-    'authors.apps.AuthorsConfig',
     'books.apps.BooksConfig',
     'main.apps.MainConfig',
     'posts.apps.PostsConfig',
     'tags.apps.TagsConfig',
+    'register.apps.RegisterConfig',
+    'galleries.apps.GalleriesConfig',
 ]
 
 
@@ -65,7 +71,7 @@ ROOT_URLCONF = 'pywww.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [BASE_DIR / 'templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -111,7 +117,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/3.2/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'pl-PL'
 
 TIME_ZONE = 'UTC'
 
@@ -142,3 +148,7 @@ MEDIA_URL = '/media/'
 
 # Crispy forms
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
+
+# Login/logout redirect
+LOGIN_REDIRECT_URL = '/'
+LOGOUT_REDIRECT_URL = '/'

@@ -1,5 +1,6 @@
 from django.db import models
 from main.models import Timestamped
+from sorl.thumbnail import ImageField
 
 
 class Author(Timestamped):
@@ -10,6 +11,7 @@ class Author(Timestamped):
     birth_city = models.CharField(max_length=255, blank=True)
     death_year = models.IntegerField(blank=True, null=True)
     death_city = models.CharField(max_length=255, blank=True, null=True)
+    portrait = ImageField(upload_to='posts/%Y/%m/%d/', blank=True, null=True)
 
     def __str__(self):
         return f'{self.first_name} {self.last_name}'
@@ -24,7 +26,7 @@ class Book(Timestamped):
     publication_city = models.CharField(max_length=255, blank=True, null=True)
     language = models.CharField(max_length=255, blank=True)
     tags = models.ManyToManyField('tags.Tag', related_name='books', blank=True)
-    cover = models.ImageField(upload_to='books/covers/%Y/%m/%d/', blank=True, null=True)
+    cover = ImageField(upload_to='books/covers/%Y/%m/%d/', blank=True, null=True)
 
     def __str__(self):
         return f'{self.title}'

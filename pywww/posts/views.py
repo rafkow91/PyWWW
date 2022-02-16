@@ -1,6 +1,6 @@
 from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponseRedirect
-from django.urls import reverse
+from django.core.paginator import Paginator
 
 from .models import Post
 from .forms import PostForm
@@ -13,7 +13,12 @@ def posts_list(request):
     if q:
         posts = posts.filter(title__icontains=q)
 
-    context = {'posts_list': posts}
+    paginator = Paginator(posts, 20)
+
+    page_number = request.GET.get('page')
+    post_list = paginator.get_page(page_number)
+
+    context = {'post_list': post_list}
 
     return render(request, 'posts/list.html', context)
 
@@ -34,11 +39,13 @@ def add_post_form(request):
             instance = form.save(commit=False)
             instance.author = request.user
             instance.save()
+            form.save_m2m()
             form.helper.form_action = 'posts:add'
             return HttpResponseRedirect('/posts')
     else:
         form = PostForm()
     return render(request, 'posts/add.html', {'form': form})
+
 
 def post_edit_details(request, post_id):
     post = get_object_or_404(Post, pk=post_id)
@@ -46,6 +53,7 @@ def post_edit_details(request, post_id):
         form = PostForm(request.POST, request.FILES, instance=post)
         if form.is_valid():
             form.save()
+            form.save_m2m()
             form.helper.form_action = f'/books/{post_id}/edit'
             return HttpResponseRedirect('/posts')
     else:

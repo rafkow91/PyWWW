@@ -6,7 +6,6 @@ from .models import Post
 
 
 class PostResource(resources.ModelResource):
-
     class Meta:
         model = Post
 
@@ -16,4 +15,5 @@ class PostAdmin(ExportMixin, admin.ModelAdmin):
     list_display = ['id', 'title', 'created', 'modified', 'published', 'sponsored']
     search_fields = ['title', 'content']
     list_filter = ['published', 'sponsored']
+    autocomplete_fields = ('tags',)
     resource_class = PostResource

@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block style %}
+<link href="{% static 'posts/css/style.css' %}" rel="stylesheet" type="text/css">
+{% endblock %}
+
+{% block title %}Galerie{% endblock %}
+
+{% block main %}
+<div style="width: 60%; margin: 0 auto">
+    <form>
+        <input class="darkgrey-rounded" id="q" name="q" style="width: 75%; display: inline-block" type="text">
+        <input class="btn btn-outline-light me-2" style="width: 20%; display: inline-block; align-items: end" type="submit"
+                   value="Szukaj">
+    </form>
+</div>
+<h1>
+    <div style="width: 75%; display: inline-block">
+        Lista galerii
+    </div>
+    {% if user.is_authenticated %}
+    <div class="text-end" style="display: inline-block">
+        <a class="btn btn-outline-light me-2" href="{% url 'galleries:add_gallery' %}">
+            Dodaj nową galerię
+        </a>
+    </div>
+    {% endif %}
+</h1>
+
+<ul class="list-group">
+    {% for gallery in galleries_list %}
+    <li class="list-group-item">
+        <a href="{% url 'galleries:details' gallery.slug %}">
+            {{ gallery }}
+        </a>
+        {% endfor %}
+</ul>
+<br>
+<div class="pagination" style="margin: 0 auto">
+    <span class="step-links">
+        {% if post_list.has_previous %}
+        <a class="btn btn-outline-light me-2" href="?page=1">&laquo; Pierwsza strona</a>
+        <a class="btn btn-outline-light me-2" href="?page={{ post_list.previous_page_number }}">Poprzednia</a>
+        {% endif %}
+
+        {% if post_list.has_next %}
+        <a class="btn btn-outline-light me-2" href="?page={{ post_list.next_page_number }}">Następna</a>
+        <a class="btn btn-outline-light me-2" href="?page={{ post_list.paginator.num_pages }}">Ostatnia strona &raquo;</a>
+        {% endif %}
+    </span>
+</div>
+<br>
+{% endblock %}

@@ -5,3 +5,8 @@ PyYAML==6.0
 Faker==9.5.2
 pillow
 django-crispy-forms
+django-autocomplete-light
+sorl-thumbnail
+python-memcached
+
+ipython

@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block title %} Rejestracja nowego użytkownika {% endblock %}
+
+{% block main %}
+<form style="max-width: 60%; margin: 0 auto; background-color: lightgrey; padding: 30px; color: #222223; border-radius: 12px" method="post">
+    <h4>Formularz rejestracji użytkownika</h4>
+    {% csrf_token %}
+    {{ form|crispy }}
+    <br>
+    <div class="text-end">
+        <button type="submit" class="btn btn-success">Zarejestruj</button>
+    </div>
+</form>
+{% endblock %}

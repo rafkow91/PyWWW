@@ -10,10 +10,13 @@
     <link href="{% static 'main/css/style.css' %}" rel="stylesheet" type="text/css">
 
     {% block style %} {% endblock %}
+
     <title>
         {% block title %} {% endblock %}
     </title>
+
 </head>
+
 <body>
 <div class="container">
     <nav>
@@ -26,21 +29,26 @@
                     <li><a class="nav-link px-2 text-secondary" href="/">Home</a></li>
                     <li><a class="nav-link px-2 text-white" href="/books/list">Books</a></li>
                     <li><a class="nav-link px-2 text-white" href="/posts">Posts</a></li>
+                    <li><a class="nav-link px-2 text-white" href="/galleries">Galleries</a></li>
                     <li><a class="nav-link px-2 text-white" href="/about">About</a></li>
                     <li><a class="nav-link px-2 text-white" href="/contact">Contact</a></li>
                 </ul>
             </a>
             <div class="text-end">
-                <a class="btn btn-outline-light me-2" href="/admin">Panel administracyjny</a>
+                {% if user.is_authenticated %}
+                <p style="font-size: small">Jesteś zalogowany jako: <b>{{ user.username }}</b></p>
+                <a class="btn btn-outline-light me-2" href="{% url 'logout' %}">Wyloguj</a>
+                {% else %}
+                <a class="btn btn-outline-light me-2" href="{% url 'register:register' %}">Zarejestruj</a>
+                <a class="btn btn-outline-light me-2" href="{% url 'login' %}">Zaloguj</a>
+                {% endif %}
             </div>
         </div>
     </nav>
     <header>
         <img alt="Logo BlackSystem" class="header"
              src="{% static 'main/img/BlackSystem_header.png' %}">
-
         <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-
     </header>
     <main>
         {% block main %} {% endblock %}
@@ -53,5 +61,6 @@
 <script crossorigin="anonymous"
         integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
         src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+{% block additional_scripts %}{% endblock %}
 </body>
 </html>

@@ -1,4 +1,4 @@
-from django.contrib.auth import get_user_model
+from django.contrib.auth import get_user_model, authenticate, login
 from django.http import HttpResponseRedirect
 from django.shortcuts import render, get_object_or_404
 from django.urls import reverse
@@ -6,6 +6,14 @@ from django.urls import reverse
 from .forms import ContactForm, UserProfileForm
 from . import services
 
+# def login_view(request):
+#     username = request.POST['username']
+#     password = request.POST['password']
+#     user = authenticate(request, username=username, password=password)
+#     if user is not None:
+#         login(request, user)
+#     else:
+#         return NotImplemented
 
 def home(request):
     return render(request, 'main/home.html')

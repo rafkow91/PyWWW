@@ -1,0 +1,17 @@
+.center-form-800px-border1px {
+    display: block;
+    width: 800px;
+    margin: 10px auto;
+    padding: 20px;
+    border: #424243 1px solid;
+}
+
+.darkgrey-rounded {
+    background-color: darkgrey;
+    border-radius: 10px;
+    padding: 0 10px;
+}
+
+.photo_padding {
+    padding: 5px;
+}
