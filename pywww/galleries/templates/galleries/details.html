@@ -26,9 +26,9 @@
 <p class="text-decoration-underline">Zdjęcia:</p>
 <section class="photo_gallery">
     {% for photo in photos %}
-    {% thumbnail photo.image "x300" as im %}
+    {% thumbnail photo.image "200x200" crop="center" as im %}
     <a href="{{ photo.image.url }}">
-        <img src="{{ im.url }}" alt="" class="photo_padding">
+        <img src="{{ im.url }}" alt="" class="photo_padding_rounded">
     </a>
     {% endthumbnail %}
     {% endfor %}

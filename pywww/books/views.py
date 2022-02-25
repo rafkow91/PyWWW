@@ -1,8 +1,9 @@
+from dal import autocomplete
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render, get_object_or_404
 
-from .models import Book
-from .forms import BookForm
+from .forms import BookForm, AuthorForm, AuthorFormSet
+from .models import Book, Author
 
 
 def start_view(request):
@@ -16,7 +17,13 @@ def books_list(request):
 
 
 def book_details(request, book_id):
-    context = {'book': Book.objects.get(id=book_id)}
+    book = Book.objects.get(id=book_id)
+    book_authors = list(book.authors.all()),
+
+    context = {
+        'book': book,
+        # 'book_authors': book_authors,
+    }
 
     return render(request, 'books/details.html', context)
 
@@ -40,10 +47,51 @@ def edit_book(request, book_id):
 
 def add_book(request):
     form = BookForm()
+    formset = AuthorFormSet(queryset=Author.objects.none())
+
     if request.method == "POST":
         form = BookForm(request.POST, request.FILES)
+        formset = AuthorFormSet(request.POST)
+        if form.is_valid():
+            instance = form.save()
+            if formset.is_valid():
+                for f in formset.cleaned_data:
+                    if f:
+                        author, _ = Author.objects.get_or_create(**f)
+                        if author not in instance.authors.all():
+                            instance.authors.add(author)
+                    instance.save()
+
+        return HttpResponseRedirect('/books/list')
+    return render(
+        request=request,
+        template_name='books/add.html',
+        context={
+            'form': form,
+            'formset': formset,
+        }
+    )
+
+
+def add_author(request):
+    form = AuthorForm()
+    if request.method == "POST":
+        form = AuthorForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
-            form.helper.form_action = 'books:add'
+            form.helper.form_action = 'books:add_author'
         return HttpResponseRedirect('/books/list')
     return render(request, 'books/add.html', {'form': form})
+
+
+class AuthorsAutocomplete(autocomplete.Select2QuerySetView):
+    def get_queryset(self):
+        if not self.request.user.is_authenticated:
+            return Author.objects.none()
+
+        qs = Author.objects.all()
+
+        if self.q:
+            qs = qs.filter(name__istartswith=self.q)
+
+        return qs

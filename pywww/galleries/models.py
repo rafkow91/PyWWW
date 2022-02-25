@@ -1,6 +1,6 @@
 from django.db import models
 from django.utils.text import slugify
-from sorl.thumbnail import ImageField
+from tinymce import models as tinymce_models
 
 from main.models import Timestamped
 
@@ -21,7 +21,7 @@ class StatusChoices(models.Model):
 
     @property
     def is_published(self):
-        return self.status == StatusChoices.PUBLISHED
+        return bool(self.status == StatusChoices.PUBLISHED)
 
     @property
     def is_hide(self):
@@ -60,7 +60,7 @@ class Gallery(Timestamped, StatusChoices, SlugMixin):
     title = models.CharField(max_length=100)
     slug = models.SlugField(unique=True, blank=True)
 
-    description = models.TextField(null=True, blank=True)
+    description = tinymce_models.HTMLField(null=True, blank=True)
 
     def save(self, *args, **kwargs):
         if self.status == StatusChoices.HIDE:
@@ -71,12 +71,16 @@ class Gallery(Timestamped, StatusChoices, SlugMixin):
     def __str__(self):
         return self.title
 
+    @property
+    def photos_count(self):
+        return Photo.objects.filter(gallery=self.pk).count()
+
 
 class Photo(Timestamped, StatusChoices, SlugMixin):
     title = models.CharField(max_length=100)
     slug = models.SlugField(unique=True, blank=True)
     short_description = models.CharField(max_length=300, blank=True)
-    image = ImageField(upload_to=upload_to)
+    image = models.ImageField(upload_to=upload_to)
     gallery = models.ForeignKey(Gallery, on_delete=models.CASCADE)
     source = models.CharField(max_length=512, null=True, blank=True)
 

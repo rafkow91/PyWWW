@@ -1,6 +1,7 @@
 from django.db import models
-from main.models import Timestamped
 from sorl.thumbnail import ImageField
+
+from main.models import Timestamped
 
 
 class Author(Timestamped):
@@ -13,13 +14,21 @@ class Author(Timestamped):
     death_city = models.CharField(max_length=255, blank=True, null=True)
     portrait = ImageField(upload_to='posts/%Y/%m/%d/', blank=True, null=True)
 
+    class Meta:
+        verbose_name = 'Autor'
+        verbose_name_plural = 'Autorzy'
+
     def __str__(self):
         return f'{self.first_name} {self.last_name}'
+
+    @property
+    def books_count(self):
+        return self.books.count()
 
 
 class Book(Timestamped):
     title = models.CharField(max_length=255)
-    author = models.ManyToManyField(Author, related_name='books', blank=True)
+    authors = models.ManyToManyField('Author', related_name='books', blank=True)
     description = models.TextField(blank=True)
     available = models.BooleanField(default=True)
     publication_year = models.IntegerField(blank=True)
@@ -27,6 +36,10 @@ class Book(Timestamped):
     language = models.CharField(max_length=255, blank=True)
     tags = models.ManyToManyField('tags.Tag', related_name='books', blank=True)
     cover = ImageField(upload_to='books/covers/%Y/%m/%d/', blank=True, null=True)
+
+    class Meta:
+        verbose_name = 'Książka'
+        verbose_name_plural = 'Książki'
 
     def __str__(self):
         return f'{self.title}'

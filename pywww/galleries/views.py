@@ -1,4 +1,5 @@
 from django.core.paginator import Paginator
+from django.db.models import Count
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
 
@@ -7,7 +8,8 @@ from .models import Gallery, Photo, StatusChoices
 
 
 def galleries_list(request):
-    gallerries = Gallery.objects.filter(status=StatusChoices.PUBLISHED)
+    gallerries = Gallery.objects.filter(status=StatusChoices.PUBLISHED).annotate(photo_count=Count('photo')).filter(
+        photo_count__gt=0)
 
     q = request.GET.get('q')
     if q:
@@ -63,5 +65,3 @@ def photo_add(request, gallery_slug):
         form = PhotoForm()
 
     return render(request, 'galleries/add.html', {'form': form, 'gallery': gallery})
-
-

@@ -14,10 +14,10 @@
 <ul>
     <li>Autorzy:
         <p>
-            {% for _ in author %}
-            <a href="{% url 'authors:details' author.id %}">
-                <span class="fw-bold fst-italic">{{ book.author }}</span>
-            </a>
+            {% for author in book_authors %}
+<!--            <a href="{% url 'authors:details' author.id %}">-->
+                <span class="fw-bold fst-italic">{{ author }}</span>
+<!--            </a>-->
             {% endfor %}
         </p>
     </li>

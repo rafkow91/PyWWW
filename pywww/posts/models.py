@@ -1,6 +1,8 @@
 from django.db import models
-from main.models import Timestamped
 from sorl.thumbnail import ImageField
+
+from main.models import Timestamped
+
 
 class Post(Timestamped):
     title = models.CharField(max_length=255)
