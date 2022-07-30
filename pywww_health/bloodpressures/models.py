@@ -9,6 +9,7 @@ from main.models import Timestamped
 class BloodPressureMeasurement(Timestamped):
     systolic_blood_pressure = models.PositiveSmallIntegerField()
     diastolic_blood_pressure = models.PositiveSmallIntegerField()
+    pulse = models.PositiveSmallIntegerField()
     measurement_datetime = models.DateTimeField(default=datetime.today)
 
     user = models.ForeignKey(User, on_delete=models.CASCADE)
