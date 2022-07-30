@@ -12,3 +12,5 @@ pywww_health/pywww_health/__pycache__
 # files
 /test1.json
 /only_console_print.py
+pywww_health/db.sqlite3
+pywww_health/top_secret.py
