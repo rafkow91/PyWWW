@@ -1,12 +1,7 @@
 # folders
 __pycache__/
-pywww/*/__pycache__/
-pywww/*/*/__pycache__/
+*/__pycache__/
 /.idea/
-/pywwwenv/
-/pywww/media/cache/
-/pywww_health_venv
-pywww_health/pywww_health/__pycache__
 /.vscode
 
 # files
