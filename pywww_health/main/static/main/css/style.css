@@ -1,0 +1,129 @@
+@import url("https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,400;0,700;1,400&family=Roboto:ital,wght@0,400;0,700;1,400&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  max-width: 1024px;
+  margin: 0 auto;
+  background-color: #418FBF;
+}
+
+img.logo {
+  width: 50px;
+}
+
+.container {
+  background-color: #232323;
+  padding: 50px;
+  color: white;
+  min-height: 100vh;
+}
+
+header {
+  text-align: center;
+  font-family: "Lato", sans-serif;
+}
+
+img.header {
+  width: 50%;
+}
+
+header a {
+  text-decoration: none;
+  color: white;
+}
+
+header a:hover {
+  background-color: darkgrey;
+  color: lightgray;
+}
+
+main {
+  min-height: 100px;
+}
+
+footer {
+  padding: 5px;
+  border-top: black solid 2px;
+  text-align: center;
+  /* position: fixed;
+  bottom: 0; */
+}
+
+ul {
+  margin-left: 30px;
+}
+
+main a {
+  text-decoration: none;
+  color: white;
+}
+
+main a:hover {
+  text-decoration: underline;
+  color: white;
+}
+
+main a:visited {
+  text-decoration: none;
+  color: white;
+}
+
+div.details_image {
+  margin: 10px auto;
+}
+
+.details_image {
+  width: 30vw;
+}
+
+li a {
+  text-decoration-line: none;
+  color: black;
+}
+
+li a:visited {
+  color: black;
+}
+
+li a:hover {
+  text-decoration: underline;
+  color: black;
+}
+
+.inline-block-label {
+  display: inline-block;
+  margin-right: 10px;
+}
+
+.block {
+  display: block;
+}
+
+.block-centered {
+  display: block;
+  margin: 10px auto;
+}
+
+.search-right {
+  display: block;
+  margin-right: 10px;
+  margin-left: auto;
+}
+
+.darkgrey-rounded {
+  background-color: darkgrey;
+  border-radius: 10px;
+  padding: 0 10px;
+}
+
+.center-form-400px-border1px {
+  display: block;
+  width: 400px;
+  margin: 10px auto;
+  padding: 20px;
+  border: #424243 1px solid;
+}
